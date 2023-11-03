@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="wclassth=device-wclassth, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <style>
+      .fb {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .btn {
+        height: 3rem;
+        width: 20rem;
+        margin: 1rem;
+      }
+      .btn:hover {
+        cursor: grab;
+      }
+    </style>
+    <script>
+      function f1() {
+        const txt= `#include <stdio.h>
+
+int main() {
+    int n, position, newValue;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n]; // Create an array of size 'n'
+
+    // Input the initial elements of the array
+    printf("Enter %d elements for the array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Display the original array
+    printf("Original Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // Input the position at which to insert the value
+    printf("\\nEnter the position to insert the new value: ");
+    scanf("%d", &position);
+
+    // Check if the specified position is valid
+    if (position < 1 || position > n + 1) {
+        printf("Invalid position for insertion.\\n");
+        return 1; // Exit with an error code
+    }
+
+    // Input the value to insert
+    printf("Enter the new value to insert: ");
+    scanf("%d", &newValue);
+
+    // Shift elements to make room for the new value
+    for (int i = n; i >= position; i--) {
+        arr[i] = arr[i - 1];
+    }
+
+    // Insert the new value at the specified position
+    arr[position - 1] = newValue;
+    n++; // Increase the size of the array
+
+    // Display the modified array
+    printf("Array after insertion: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0; // Exit with a success code
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';
+
+      }
+
+      function f2() {
+        const txt= `#include <stdio.h>
+
+int main() {
+    int n, position;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Invalid array size.\\n");
+        return 1;
+    }
+
+    int arr[n]; // Create an array of size 'n'
+
+    // Input the elements of the array
+    printf("Enter %d elements for the array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Display the original array
+    printf("Original Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // Input the position from which to delete a value
+    printf("\\nEnter the position to delete a value: ");
+    scanf("%d", &position);
+
+    // Check if the specified position is valid
+    if (position < 1 || position > n) {
+        printf("Invalid position for deletion.\\n");
+        return 1; // Exit with an error code
+    }
+
+    // Shift elements to remove the value
+    for (int i = position - 1; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    n--; // Decrease the size of the array
+
+    // Display the modified array
+    printf("Array after deletion: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0; // Exit with a success code
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f3() {
+        const txt= `#include <stdio.h>
+
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex != i) {
+            // Swap arr[i] and arr[minIndex]
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements for the array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Original Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    selectionSort(arr, n);
+
+    printf("\\nArray after Selection Sort: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f4() {
+        const txt= `#include <stdio.h>
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements for the array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Original Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    quickSort(arr, 0, n - 1);
+
+    printf("\\nArray after Quick Sort: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f5() {
+        const txt= `#include <stdio.h>
+
+void merge(int arr[], int left, int middle, int right) {
+    int n1 = middle - left + 1;
+    int n2 = right - middle;
+
+    int L[n1], R[n2];
+
+    for (int i = 0; i < n1; i++) {
+        L[i] = arr[left + i];
+    }
+    for (int i = 0; i < n2; i++) {
+        R[i] = arr[middle + 1 + i];
+    }
+
+    int i = 0, j = 0, k = left;
+
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(int arr[], int left, int right) {
+    if (left < right) {
+        int middle = left + (right - left) / 2;
+
+        mergeSort(arr, left, middle);
+        mergeSort(arr, middle + 1, right);
+
+        merge(arr, left, middle, right);
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements for the array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Original Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    mergeSort(arr, 0, n - 1);
+
+    printf("\\nArray after Merge Sort: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f6() {
+        const txt= `#include <stdio.h>
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements for the array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Original Array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    bubbleSort(arr, n);
+
+    printf("\\nArray after Bubble Sort: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f7() {
+        const txt= `#include <stdio.h>
+
+int binarySearch(int arr[], int n, int target) {
+    int left = 0;
+    int right = n - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid;  // Element found at index 'mid'
+        }
+
+        if (arr[mid] < target) {
+            left = mid + 1;  // Search the right half
+        } else {
+            right = mid - 1; // Search the left half
+        }
+    }
+
+    return -1;  // Element not found
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the sorted array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements for the sorted array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int target;
+    printf("Enter the element to search for: ");
+    scanf("%d", &target);
+
+    int result = binarySearch(arr, n, target);
+
+    if (result != -1) {
+        printf("Element %d found at index %d.\\n", target, result);
+    } else {
+        printf("Element %d not found in the array.\\n", target);
+    }
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f8() {
+        const txt= `#include <stdio.h>
+
+int linearSearch(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;  // Element found at index 'i'
+        }
+    }
+    return -1;  // Element not found
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements for the array:\\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int target;
+    printf("Enter the element to search for: ");
+    scanf("%d", &target);
+
+    int result = linearSearch(arr, n, target);
+
+    if (result != -1) {
+        printf("Element %d found at index %d.\\n", target, result);
+    } else {
+        printf("Element %d not found in the array.\\n", target);
+    }
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f9() {
+        const txt= `#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_SIZE 100
+
+int stack[MAX_SIZE];
+int top = -1;
+
+// Function to push an element onto the stack
+void push(int value) {
+    if (top == MAX_SIZE - 1) {
+        printf("Stack is full. Cannot push %d\\n", value);
+    } else {
+        stack[++top] = value;
+        printf("Pushed %d onto the stack\\n", value);
+    }
+}
+
+// Function to pop an element from the stack
+int pop() {
+    if (top == -1) {
+        printf("Stack is empty. Cannot pop.\\n");
+        return -1;  // Return a sentinel value
+    } else {
+        int poppedValue = stack[top--];
+        return poppedValue;
+    }
+}
+
+// Function to check if the stack is empty
+bool isStackEmpty() {
+    return top == -1;
+}
+
+// Function to check if the stack is full
+bool isStackFull() {
+    return top == MAX_SIZE - 1;
+}
+
+int main() {
+    push(10);
+    push(20);
+    push(30);
+
+    int poppedValue = pop();
+    if (poppedValue != -1) {
+        printf("Popped %d from the stack\\n", poppedValue);
+    }
+
+    printf("Is the stack empty? %s\\n", isStackEmpty() ? "Yes" : "No");
+    printf("Is the stack full? %s\\n", isStackFull() ? "Yes" : "No");
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f10() {
+        const txt= `#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#define MAX_SIZE 100
+
+int stack[MAX_SIZE];
+int top = -1;
+
+int getOperatorPrecedence(char op)
+{
+    if (op == '^')
+        return 3;
+    else if (op == '*' || op == '/')
+        return 2;
+    else if (op == '+' || op == '-')
+        return 1;
+    else
+        return 0;
+}
+
+bool isOperator(char c)
+{
+    return (c == '+' || c == '-' || c == '*' || c == '/' || c == '^');
+}
+
+void push(char c)
+{
+    if (top < MAX_SIZE - 1)
+    {
+        stack[++top] = c;
+    }
+}
+
+char pop()
+{
+    if (top >= 0)
+    {
+        return stack[top--];
+    }
+    return '\\0';
+}
+
+void reverseString(char *str)
+{
+    int len = strlen(str);
+    int i, j;
+    for (i = 0, j = len - 1; i < j; i++, j--)
+    {
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+    }
+}
+
+void infixToPrefix(char *infix, char *prefix)
+{
+    reverseString(infix);
+    int i, j = 0;
+
+    for (i = 0; infix[i] != '\\0'; i++)
+    {
+        if (infix[i] == '(')
+        {
+            infix[i] = ')';
+        }
+        else if (infix[i] == ')')
+        {
+            infix[i] = '(';
+        }
+    }
+
+    for (i = 0; infix[i] != '\\0'; i++)
+    {
+        char ch = infix[i];
+        if (ch == '(')
+        {
+            push(ch);
+        }
+        else if (ch == ')')
+        {
+            while (top >= 0 && stack[top] != '(')
+            {
+                prefix[j++] = pop();
+            }
+            if (top >= 0 && stack[top] == '(')
+            {
+                pop(); // Pop the '('
+            }
+        }
+        else if (!isOperator(ch))
+        {
+            prefix[j++] = ch;
+        }
+        else
+        {
+            while (top >= 0 && getOperatorPrecedence(stack[top]) >= getOperatorPrecedence(ch))
+            {
+                prefix[j++] = pop();
+            }
+            push(ch);
+        }
+    }
+
+    while (top >= 0)
+    {
+        prefix[j++] = pop();
+    }
+    prefix[j] = '\\0';
+
+    reverseString(prefix);
+}
+
+void infixToPostfix(char *infix, char *postfix)
+{
+    int i, j = 0;
+
+    for (i = 0; infix[i] != '\\0'; i++)
+    {
+        char ch = infix[i];
+        if (ch == '(')
+        {
+            push(ch);
+        }
+        else if (ch == ')')
+        {
+            while (top >= 0 && stack[top] != '(')
+            {
+                postfix[j++] = pop();
+            }
+            if (top >= 0 && stack[top] == '(')
+            {
+                pop(); // Pop the '('
+            }
+        }
+        else if (!isOperator(ch))
+        {
+            postfix[j++] = ch;
+        }
+        else
+        {
+            while (top >= 0 && getOperatorPrecedence(stack[top]) >= getOperatorPrecedence(ch))
+            {
+                postfix[j++] = pop();
+            }
+            push(ch);
+        }
+    }
+
+    while (top >= 0)
+    {
+        postfix[j++] = pop();
+    }
+    postfix[j] = '\\0';
+}
+
+int main()
+{
+    char infix[MAX_SIZE], postfix[MAX_SIZE], prefix[MAX_SIZE];
+
+    printf("Enter an infix expression: ");
+    gets(infix);
+
+    infixToPostfix(infix, postfix);
+    printf("Postfix expression: %s\\n", postfix);
+
+    infixToPrefix(infix, prefix);
+    printf("Prefix expression: %s\\n", prefix);
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f11() {
+        const txt= `#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_SIZE 100
+
+int queue[MAX_SIZE];
+int front = -1;
+int rear = -1;
+
+bool isQueueEmpty() {
+    return front == -1;
+}
+
+bool isQueueFull() {
+    return (rear == MAX_SIZE - 1) || (rear == front - 1);
+}
+
+void enqueue(int value) {
+    if (isQueueFull()) {
+        printf("Queue is full. Cannot enqueue %d.\\n", value);
+        return;
+    }
+    if (front == -1) {
+        front = 0;
+    }
+    rear = (rear + 1) % MAX_SIZE;
+    queue[rear] = value;
+    printf("Enqueued %d\\n", value);
+}
+
+int dequeue() {
+    if (isQueueEmpty()) {
+        printf("Queue is empty. Cannot dequeue.\\n");
+        return -1;
+    }
+    int value = queue[front];
+    if (front == rear) {
+        front = rear = -1;
+    } else {
+        front = (front + 1) % MAX_SIZE;
+    }
+    return value;
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+
+    printf("Dequeued %d\\n", dequeue());
+    printf("Dequeued %d\\n", dequeue());
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f12() {
+        const txt= `#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_SIZE 5
+
+int queue[MAX_SIZE];
+int front = -1;
+int rear = -1;
+
+bool isQueueEmpty() {
+    return front == -1;
+}
+
+bool isQueueFull() {
+    return (rear == MAX_SIZE - 1 && front == 0) || (rear == front - 1);
+}
+
+void enqueue(int value) {
+    if (isQueueFull()) {
+        printf("Queue is full. Cannot enqueue %d.\\n", value);
+        return;
+    }
+    if (front == -1) {
+        front = 0;
+    }
+    rear = (rear + 1) % MAX_SIZE;
+    queue[rear] = value;
+    printf("Enqueued %d\\n", value);
+}
+
+int dequeue() {
+    if (isQueueEmpty()) {
+        printf("Queue is empty. Cannot dequeue.\\n");
+        return -1;
+    }
+    int value = queue[front];
+    if (front == rear) {
+        front = rear = -1;
+    } else {
+        front = (front + 1) % MAX_SIZE;
+    }
+    return value;
+}
+
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+
+    printf("Dequeued %d\\n", dequeue());
+    printf("Dequeued %d\\n", dequeue());
+
+    enqueue(50);
+    enqueue(60);
+
+    printf("Dequeued %d\\n", dequeue());
+    printf("Dequeued %d\\n", dequeue());
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f13() {
+        const txt= `#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node in the linked list
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert a new node at the beginning of the linked list
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    newNode->next = *head;
+    *head = newNode;
+}
+
+// Function to display the linked list
+void displayList(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    // Insert some elements at the beginning
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+
+    // Display the linked list
+    printf("Linked List: ");
+    displayList(head);
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f14() {
+        const txt= `#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    newNode->next = *head;
+    *head = newNode;
+}
+
+void displayList(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\\n");
+}
+
+// Function to delete a node by its value
+void deleteNodeByValue(struct Node** head, int value) {
+    struct Node* current = *head;
+    struct Node* prev = NULL;
+
+    while (current != NULL && current->data != value) {
+        prev = current;
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        printf("Node with value %d not found in the list.\\n", value);
+        return;
+    }
+
+    if (prev == NULL) {
+        *head = current->next;
+    } else {
+        prev->next = current->next;
+    }
+
+    free(current);
+}
+
+// Function to delete a node at a specified position
+void deleteNodeAtPosition(struct Node** head, int position) {
+    if (*head == NULL) {
+        printf("List is empty, cannot delete.\\n");
+        return;
+    }
+
+    struct Node* current = *head;
+    struct Node* prev = NULL;
+    int count = 0;
+
+    while (current != NULL && count < position) {
+        prev = current;
+        current = current->next;
+        count++;
+    }
+
+    if (current == NULL) {
+        printf("Position %d is out of range.\\n", position);
+        return;
+    }
+
+    if (prev == NULL) {
+        *head = current->next;
+    } else {
+        prev->next = current->next;
+    }
+
+    free(current);
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 2);
+    insertAtBeginning(&head, 1);
+
+    printf("Linked List: ");
+    displayList(head);
+
+    deleteNodeByValue(&head, 2);
+    printf("Linked List after deleting node with value 2: ");
+    displayList(head);
+
+    deleteNodeAtPosition(&head, 1);
+    printf("Linked List after deleting node at position 1: ");
+    displayList(head);
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f15() {
+        const txt= `#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node in the circular doubly linked list
+struct Node {
+    int data;
+    struct Node* next;
+    struct Node* prev;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = newNode;
+    newNode->prev = newNode;
+    return newNode;
+}
+
+// Function to insert a new node at the beginning of the circular doubly linked list
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        newNode->next = *head;
+        newNode->prev = (*head)->prev;
+        (*head)->prev->next = newNode;
+        (*head)->prev = newNode;
+        *head = newNode;
+    }
+}
+
+// Function to insert a new node at the end of the circular doubly linked list
+void insertAtEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        newNode->next = *head;
+        newNode->prev = (*head)->prev;
+        (*head)->prev->next = newNode;
+        (*head)->prev = newNode;
+    }
+}
+
+// Function to display the circular doubly linked list
+void displayList(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\\n");
+        return;
+    }
+
+    struct Node* current = head;
+
+    do {
+        printf("%d <-> ", current->data);
+        current = current->next;
+    } while (current != head);
+
+    printf("%d (Head)\\n", current->data);
+}
+
+// Function to delete a node by its value
+void deleteNodeByValue(struct Node** head, int value) {
+    if (*head == NULL) {
+        printf("List is empty, cannot delete.\\n");
+        return;
+    }
+
+    struct Node* current = *head;
+    do {
+        if (current->data == value) {
+            if (current == *head) {
+                *head = current->next;
+            }
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+            free(current);
+            return;
+        }
+        current = current->next;
+    } while (current != *head);
+
+    printf("Node with value %d not found in the list.\\n");
+}
+
+// Function to delete a node at a specified position
+void deleteNodeAtPosition(struct Node** head, int position) {
+    if (*head == NULL) {
+        printf("List is empty, cannot delete.\\n");
+        return;
+    }
+
+    struct Node* current = *head;
+    int count = 1;
+
+    do {
+        if (count == position) {
+            if (current == *head) {
+                *head = current->next;
+            }
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+            free(current);
+            return;
+        }
+        current = current->next;
+        count++;
+    } while (current != *head);
+
+    printf("Position %d is out of range.\\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 2);
+    insertAtEnd(&head, 3);
+
+    printf("Circular Doubly Linked List: ");
+    displayList(head);
+
+    deleteNodeByValue(&head, 2);
+    printf("List after deleting node with value 2: ");
+    displayList(head);
+
+    deleteNodeAtPosition(&head, 1);
+    printf("List after deleting node at position 1: ");
+    displayList(head);
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f16() {
+        const txt= `#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node in the circular doubly linked list
+struct Node {
+    int data;
+    struct Node* next;
+    struct Node* prev;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = newNode;
+    newNode->prev = newNode;
+    return newNode;
+}
+
+// Function to insert a new node at the beginning of the circular doubly linked list
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        newNode->next = *head;
+        newNode->prev = (*head)->prev;
+        (*head)->prev->next = newNode;
+        (*head)->prev = newNode;
+        *head = newNode;
+    }
+}
+
+// Function to insert a new node at the end of the circular doubly linked list
+void insertAtEnd(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        newNode->next = *head;
+        newNode->prev = (*head)->prev;
+        (*head)->prev->next = newNode;
+        (*head)->prev = newNode;
+    }
+}
+
+// Function to display the circular doubly linked list
+void displayList(struct Node* head) {
+    if (head == NULL) {
+        printf("List is empty.\\n");
+        return;
+    }
+
+    struct Node* current = head;
+
+    do {
+        printf("%d <-> ", current->data);
+        current = current->next;
+    } while (current != head);
+
+    printf("%d (Head)\\n", current->data);
+}
+
+// Function to delete a node by its value
+void deleteNodeByValue(struct Node** head, int value) {
+    if (*head == NULL) {
+        printf("List is empty, cannot delete.\\n");
+        return;
+    }
+
+    struct Node* current = *head;
+    do {
+        if (current->data == value) {
+            if (current == *head) {
+                *head = current->next;
+            }
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+            free(current);
+            return;
+        }
+        current = current->next;
+    } while (current != *head);
+
+    printf("Node with value %d not found in the list.\\n");
+}
+
+// Function to delete a node at a specified position
+void deleteNodeAtPosition(struct Node** head, int position) {
+    if (*head == NULL) {
+        printf("List is empty, cannot delete.\\n");
+        return;
+    }
+
+    struct Node* current = *head;
+    int count = 1;
+
+    do {
+        if (count == position) {
+            if (current == *head) {
+                *head = current->next;
+            }
+            current->prev->next = current->next;
+            current->next->prev = current->prev;
+            free(current);
+            return;
+        }
+        current = current->next;
+        count++;
+    } while (current != *head);
+
+    printf("Position %d is out of range.\\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 2);
+    insertAtEnd(&head, 3);
+
+    printf("Circular Doubly Linked List: ");
+    displayList(head);
+
+    deleteNodeByValue(&head, 2);
+    printf("List after deleting node with value 2: ");
+    displayList(head);
+
+    deleteNodeAtPosition(&head, 1);
+    printf("List after deleting node at position 1: ");
+    displayList(head);
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f17() {
+        const txt= `#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a binary tree node
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+// Function to create a new binary tree node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+// Function to insert a node into the binary tree
+struct Node* insertNode(struct Node* root, int data) {
+    if (root == NULL) {
+        return createNode(data);
+    }
+
+    if (data < root->data) {
+        root->left = insertNode(root->left, data);
+    } else if (data > root->data) {
+        root->right = insertNode(root->right, data);
+    }
+
+    return root;
+}
+
+// Function to search for a node in the binary tree
+struct Node* searchNode(struct Node* root, int data) {
+    if (root == NULL || root->data == data) {
+        return root;
+    }
+
+    if (data < root->data) {
+        return searchNode(root->left, data);
+    }
+
+    return searchNode(root->right, data);
+}
+
+// Function to find the minimum value node in a binary tree
+struct Node* findMinNode(struct Node* node) {
+    struct Node* current = node;
+    while (current->left != NULL) {
+        current = current->left;
+    }
+    return current;
+}
+
+// Function to delete a node from the binary tree
+struct Node* deleteNode(struct Node* root, int data) {
+    if (root == NULL) {
+        return root;
+    }
+
+    if (data < root->data) {
+        root->left = deleteNode(root->left, data);
+    } else if (data > root->data) {
+        root->right = deleteNode(root->right, data);
+    } else {
+        // Node with only one child or no child
+        if (root->left == NULL) {
+            struct Node* temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            struct Node* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // Node with two children: get the inorder successor (smallest in the right subtree)
+        struct Node* temp = findMinNode(root->right);
+
+        // Copy the inorder successor's data to this node
+        root->data = temp->data;
+
+        // Delete the inorder successor
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
+// Function to print the binary tree in-order (ascending order)
+void inorderTraversal(struct Node* root) {
+    if (root != NULL) {
+        inorderTraversal(root->left);
+        printf("%d ", root->data);
+        inorderTraversal(root->right);
+    }
+}
+
+int main() {
+    struct Node* root = NULL;
+
+    // Insert nodes into the binary tree
+    root = insertNode(root, 50);
+    root = insertNode(root, 30);
+    root = insertNode(root, 20);
+    root = insertNode(root, 40);
+    root = insertNode(root, 70);
+    root = insertNode(root, 60);
+    root = insertNode(root, 80);
+
+    printf("In-order Traversal of Binary Tree: ");
+    inorderTraversal(root);
+    printf("\\n");
+
+    // Search for a node
+    int searchValue = 40;
+    struct Node* searchResult = searchNode(root, searchValue);
+    if (searchResult != NULL) {
+        printf("Node with value %d found.\\n", searchValue);
+    } else {
+        printf("Node with value %d not found.\\n", searchValue);
+    }
+
+    // Delete a node
+    int deleteValue = 30;
+    root = deleteNode(root, deleteValue);
+    printf("In-order Traversal after deleting node with value %d: ", deleteValue);
+    inorderTraversal(root);
+    printf("\\n");
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+
+      function f18() {
+        const txt= `#include <stdio.h>
+#include <stdbool.h>
+#include <limits.h>
+
+// Number of vertices in the graph
+#define V 6
+
+// Function to find the vertex with the minimum distance value
+int minDistance(int dist[], bool sptSet[]) {
+    int min = INT_MAX, min_index;
+
+    for (int v = 0; v < V; v++) {
+        if (!sptSet[v] && dist[v] <= min) {
+            min = dist[v];
+            min_index = v;
+        }
+    }
+
+    return min_index;
+}
+
+// Function to print the final shortest path distances
+void printSolution(int dist[]) {
+    printf("Vertex\\tDistance from Source\\n");
+    for (int i = 0; i < V; i++) {
+        printf("%d\\t%d\\n", i, dist[i]);
+    }
+}
+
+// Function to implement Dijkstra's algorithm to find the shortest path
+void dijkstra(int graph[V][V], int src) {
+    int dist[V];
+    bool sptSet[V];
+
+    for (int i = 0; i < V; i++) {
+        dist[i] = INT_MAX;
+        sptSet[i] = false;
+    }
+
+    dist[src] = 0;
+
+    for (int count = 0; count < V - 1; count++) {
+        int u = minDistance(dist, sptSet);
+        sptSet[u] = true;
+
+        for (int v = 0; v < V; v++) {
+            if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]) {
+                dist[v] = dist[u] + graph[u][v];
+            }
+        }
+    }
+
+    printSolution(dist);
+}
+
+int main() {
+    int graph[V][V] = {
+        {0, 10, 0, 0, 0, 8},
+        {0, 0, 0, 2, 0, 0},
+        {0, 1, 0, 0, 0, 0},
+        {0, 0, 7, 0, 9, 0},
+        {0, 0, 0, 6, 0, 0},
+        {0, 0, 0, 0, 0, 0}
+    };
+
+    int source = 0;
+
+    dijkstra(graph, source);
+
+    return 0;
+}
+        `;
+        navigator.clipboard.writeText(txt);
+        document.getElementsByTagName('body')[0].style.backgroundColor = '#acfad2';;
+
+      }
+    </script>
+  </head>
+  <body>
+    <div class="fb">
+      <button class="btn" onclick="f1()">Insert in array</button>
+      <button class="btn" onclick="f2()">Delete in array</button>
+      <button class="btn" onclick="f3()">Selection sort</button>
+      <button class="btn" onclick="f4()">Quick sort</button>
+      <button class="btn" onclick="f5()">Merge sort</button>
+      <button class="btn" onclick="f6()">Bubble sort</button>
+      <button class="btn" onclick="f7()">Binary Search</button>
+      <button class="btn" onclick="f8()">Linear Search</button>
+      <button class="btn" onclick="f9()">Stack</button>
+      <button class="btn" onclick="f10()">Infix</button>
+      <button class="btn" onclick="f11()">Simple Queue</button>
+      <button class="btn" onclick="f12()">Circular Queue</button>
+      <button class="btn" onclick="f13()">Singly LL</button>
+      <button class="btn" onclick="f14()">Singly LL - delete node</button>
+      <button class="btn" onclick="f15()">Circular DLL - Insert</button>
+      <button class="btn" onclick="f16()">Circular DLL - Delete</button>
+      <button class="btn" onclick="f17()">Binary Tree</button>
+      <button class="btn" onclick="f18()">Dijkstras Algo</button>
+    </div>
+  </body>
+</html>
